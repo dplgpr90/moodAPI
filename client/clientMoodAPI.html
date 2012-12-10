@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>moodAPI</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"/></script>
+	<script type="text/javascript">
+
+		/* RESTITUISCE INFO DEL TESTO */
+		function info () {
+			var url = 'http://localhost:8080/moodAPI/api/' + $('#text').val();
+			$.ajax({
+              url: url,
+              dataType: "json",
+              success: function(data) {
+                  console.log("search success")
+				  console.log(data);
+				  $('#info').html(" ");
+				  $('#info').append("<ul>");
+				  $('#info').append("<li><b>MOOD: </b>" + data.mood + "</li>");
+				  $('#info').append("<li><b>ENERGY: </b>" + data.energyIndex + "</li>");
+				  $('#info').append("<li><b>POLARITY: </b>" + data.polarityIndex + "</li>");
+				  $('#info').append("</ul>");
+			  }
+			});
+		}
+	</script>
+</head>
+<body>
+	<h4>Insert your text</h4>
+	<textarea id="text"></textarea>
+	<br>
+	<br>
+	<button onclick="javascript:info();">SEARCH MOOD!</button>
+	<br>
+	<br>
+	<br>
+	<div id="info"></div>
+</body>
+</html>
